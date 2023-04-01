@@ -13,7 +13,8 @@ public final class map {
 
     public static void main(String[] args){
         gradiant();
-        image();
+        RGBimage();
+        Foodimage();
     }
 
     public static void gradiant(){
@@ -70,21 +71,41 @@ public final class map {
         }
     }
 
-    public static void image(){
+    public static void food(){
+
+    }
+
+    public static void RGBimage(){
         for(int i = 0; i < y; i++){
             for(int j =0; j < x; j++){
                 image.setRGB(i,j,map[j][i].getRGB());
             }
         }
-        saveToFile();
-    }
-
-    private static void saveToFile(){
         try {
-            ImageIO.write(image, "png", new File("map.png"));
+            ImageIO.write(image, "png", new File("RGBmap.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    
+
+    public static void Foodimage(){
+        for(int i = 0; i < y; i++){
+            for(int j =0; j < x; j++){
+                if (map[j][i].getFood() == 0){
+                    image.setRGB (i,j, 16777215);
+                } else if (map[j][i].getFood() == 1){
+                    image.setRGB (i,j, 16711680);
+                } else if (map[j][i].getFood() == 2){
+                    image.setRGB (i,j, 65280);
+                } else if (map[j][i].getFood() == 3){
+                    image.setRGB (i,j, 255);
+                } 
+            }
+        }
+        try {
+            ImageIO.write(image, "png", new File("Foodmap.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
