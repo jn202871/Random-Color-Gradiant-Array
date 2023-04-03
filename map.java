@@ -35,28 +35,28 @@ public final class map {
 
         redX += redXSpeed;
         redY += redYSpeed;
-        if (redX < 0 || redX > x) {
+        if (redX <= 0 || redX >= x) {
             redXSpeed *= -1;
         }
-        if (redY < 0 || redY > y) {
+        if (redY <= 0 || redY >= y) {
             redYSpeed *= -1;
         }
 
         greenX += greenXSpeed;
         greenY += greenYSpeed;
-        if (greenX < 0 || greenX > x) {
+        if (greenX <= 0 || greenX >= x) {
             greenXSpeed *= -1;
         }
-        if (greenY < 0 || greenY > y) {
+        if (greenY <= 0 || greenY >= y) {
             greenYSpeed *= -1;
         }
 
         blueX += blueXSpeed;
         blueY += blueYSpeed;
-        if (blueX < 0 || blueX > x) {
+        if (blueX <= 0 || blueX >= x) {
             blueXSpeed *= -1;
         }
-        if (blueY < 0 || blueY > y) {
+        if (blueY <= 0 || blueY >= y) {
             blueYSpeed *= -1;
         }
 
