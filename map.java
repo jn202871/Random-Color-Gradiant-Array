@@ -6,18 +6,19 @@ import java.io.IOException;
 import java.io.File;
 
 public final class map {
-    static int x = 256;
+    static int x = 256; //Dimentions of Grid
     static int y = 256;
     static spot[][] map = new spot[y][x];
     private static BufferedImage image = new BufferedImage(x, y, BufferedImage.TYPE_INT_RGB);
 
     public static void main(String[] args){
-        gradiant();
-        RGBimage();
-        Foodimage();
+        gradiant(); //Creates rbg gradiant and food distribution
+        RGBimage(); //Creates image of gradiant
+        Foodimage(); //Creates image of food distribution
     }
 
-    public static void gradiant(){
+    public static void gradiant(){ // Uses "bouncing balls" to create a 2d gradiant
+        //Random start locations and speed for balls
         float redX = ThreadLocalRandom.current().nextInt(0,x);
         float redY = ThreadLocalRandom.current().nextInt(0,y);
         float redXSpeed = ThreadLocalRandom.current().nextInt(-1,1);
@@ -35,7 +36,7 @@ public final class map {
 
         redX += redXSpeed;
         redY += redYSpeed;
-        if (redX <= 0 || redX >= x) {
+        if (redX <= 0 || redX >= x) { // If ball is outside of bounds go backwards
             redXSpeed *= -1;
         }
         if (redY <= 0 || redY >= y) {
@@ -44,7 +45,7 @@ public final class map {
 
         greenX += greenXSpeed;
         greenY += greenYSpeed;
-        if (greenX <= 0 || greenX >= x) {
+        if (greenX <= 0 || greenX >= x) { // If ball is outside of bounds go backwards
             greenXSpeed *= -1;
         }
         if (greenY <= 0 || greenY >= y) {
@@ -53,14 +54,14 @@ public final class map {
 
         blueX += blueXSpeed;
         blueY += blueYSpeed;
-        if (blueX <= 0 || blueX >= x) {
+        if (blueX <= 0 || blueX >= x) { // If ball is outside of bounds go backwards
             blueXSpeed *= -1;
         }
         if (blueY <= 0 || blueY >= y) {
             blueYSpeed *= -1;
         }
 
-        for (int j = 0; j < y; j++) {
+        for (int j = 0; j < y; j++) { // Finds RGB value of location in array using distance from balls
             for (int i = 0; i < x; i++) {
             double redDistance = Math.hypot(i-redX, j-redY);
             double greenDistance = Math.hypot(i-greenX, j-greenY);
@@ -71,11 +72,7 @@ public final class map {
         }
     }
 
-    public static void food(){
-
-    }
-
-    public static void RGBimage(){
+    public static void RGBimage(){ // Creates image of gradiant
         for(int i = 0; i < y; i++){
             for(int j =0; j < x; j++){
                 image.setRGB(i,j,map[j][i].getRGB());
@@ -88,7 +85,7 @@ public final class map {
         }
     }
 
-    public static void Foodimage(){
+    public static void Foodimage(){ // Creates image of food distribution
         for(int i = 0; i < y; i++){
             for(int j =0; j < x; j++){
                 if (map[j][i].getFood() == 0){
